@@ -1,3 +1,3 @@
 # Wave Function Collapse
 
-This is my try at web function collapse
+This is my try at wave function collapse
