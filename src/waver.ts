@@ -1,4 +1,4 @@
-const GRID_SIZE = 4;
+const GRID_SIZE = 32;
 
 const getBoard = () => {
   const arr = [];
@@ -62,27 +62,11 @@ const collapseAt = (board: number[][], cords: number[]) => {
   board[cords[0]][cords[1]] = tiles[Math.floor(Math.random() * tiles.length)];
 };
 
-const getValidNeighbors = (board: number[][], cords: number[]) => {
-  const ns = [];
-  cords[0] - 1 >= 0 && ns.push([cords[0] - 1, cords[1]]);
-  cords[1] - 1 >= 0 && ns.push([cords[0], cords[1] - 1]);
-  cords[0] + 1 < board.length && ns.push([cords[0] + 1, cords[1]]);
-  cords[1] + 1 < board[0].length && ns.push([cords[0], cords[1] + 1]);
-  return ns;
-};
-
 const isInStack = (stack: number[][], cords: number[]) => {
   for (let i = 0; i < stack.length; i++) {
     if (stack[i][0] === cords[0] && stack[i][1] === cords[1]) return true;
   }
   return false;
-};
-
-const getRelativeIndex = (curCords: number[], d: number[]) => {
-  if (curCords[0] > d[0]) return 0;
-  else if (curCords[1] > d[1]) return 1;
-  else if (curCords[0] < d[0]) return 2;
-  else return 3;
 };
 
 const propagate = (board: number[][], cords: number[]) => {
@@ -96,28 +80,13 @@ const propagate = (board: number[][], cords: number[]) => {
       const d = ns[j];
       let dValue = board[d[0]][d[1]];
       const dValueBackup = dValue;
-      const valid = getMathcingTiles(board[curCords[0]][curCords[1]])[
-        getRelativeIndex(curCords, d)
-      ];
+      const valid = getMatchingFromNeighbors(board, d);
       dValue = (dValue & valid) === 0 ? 1 : dValue & valid;
       if (dValue != dValueBackup && !isInStack(stack, d)) {
         stack.push(d);
       }
       board[d[0]][d[1]] = dValue;
     }
-    // getValidNeighbors(board, curCords).forEach((d) => {
-    //   const dTiles = getTileValues(board[d[0]][d[1]]);
-    //   let newDTiles = [...dTiles];
-
-    //   for (let i = 0; i < dTiles.length; i++) {
-    //     if ((board[d[0]][d[1]] & dTiles[i]) == 0) {
-    //       newDTiles = newDTiles.filter((v) => v != dTiles[i]);
-    //       if (!isInStack(stack, d)) {
-    //         stack.push(d);
-    //       }
-    //     }
-    //   }
-    // });
   }
 };
 
