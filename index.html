@@ -4,10 +4,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="static/styles.css" />
     <title>Wave Function Collapse</title>
   </head>
   <body>
-    <canvas id="canvas"></canvas>
+    <div class="flex">
+      <canvas id="canvas"></canvas>
+      <div class="parameters-section">
+        <h1>Grid Size</h1>
+        <input
+          type="number"
+          value="32"
+          placeholder="Grid size"
+          id="grid-size-input"
+        />
+        <button id="generate"><h3>Generate</h3></button>
+      </div>
+    </div>
     <script src="dist/tileHandler.js"></script>
     <script src="dist/waver.js"></script>
     <script src="dist/drawer.js"></script>

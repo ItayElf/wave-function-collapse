@@ -1,10 +1,10 @@
 const GRID_SIZE = 32;
 
-const getBoard = () => {
+const getBoard = (gridSize: number) => {
   const arr = [];
-  for (let i = 0; i < GRID_SIZE; i++) {
+  for (let i = 0; i < gridSize; i++) {
     const subarr = [];
-    for (let j = 0; j < GRID_SIZE; j++) {
+    for (let j = 0; j < gridSize; j++) {
       subarr.push(65535);
     }
     arr.push(subarr);

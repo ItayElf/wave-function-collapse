@@ -1,0 +1,24 @@
+.flex {
+  display: flex;
+  width: 100%;
+}
+
+.flex > *:not(:last-child) {
+  margin-right: 20px;
+}
+
+.parameters-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.parameters-section > input {
+  font-size: large;
+}
+
+.parameters-section > *:not(:last-child) {
+  margin-bottom: 24px;
+}
