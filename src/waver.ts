@@ -78,25 +78,46 @@ const isInStack = (stack: number[][], cords: number[]) => {
   return false;
 };
 
+const getRelativeIndex = (curCords: number[], d: number[]) => {
+  if (curCords[0] > d[0]) return 0;
+  else if (curCords[1] > d[1]) return 1;
+  else if (curCords[0] < d[0]) return 2;
+  else return 3;
+};
+
 const propagate = (board: number[][], cords: number[]) => {
   const stack = [cords];
 
   while (stack.length > 0) {
     const curCords = stack.pop();
     if (!curCords) continue;
-    getValidNeighbors(board, curCords).forEach((d) => {
-      const dTiles = getTileValues(board[d[0]][d[1]]);
-      let newDTiles = [...dTiles];
-
-      for (let i = 0; i < dTiles.length; i++) {
-        if ((board[d[0]][d[1]] & dTiles[i]) == 0) {
-          newDTiles = newDTiles.filter((v) => v != dTiles[i]);
-          if (!isInStack(stack, d)) {
-            stack.push(d);
-          }
-        }
+    const ns = getValidNeighbors(board, curCords);
+    for (let j = 0; j < ns.length; j++) {
+      const d = ns[j];
+      let dValue = board[d[0]][d[1]];
+      const dValueBackup = dValue;
+      const valid = getMathcingTiles(board[curCords[0]][curCords[1]])[
+        getRelativeIndex(curCords, d)
+      ];
+      dValue = (dValue & valid) === 0 ? 1 : dValue & valid;
+      if (dValue != dValueBackup && !isInStack(stack, d)) {
+        stack.push(d);
       }
-    });
+      board[d[0]][d[1]] = dValue;
+    }
+    // getValidNeighbors(board, curCords).forEach((d) => {
+    //   const dTiles = getTileValues(board[d[0]][d[1]]);
+    //   let newDTiles = [...dTiles];
+
+    //   for (let i = 0; i < dTiles.length; i++) {
+    //     if ((board[d[0]][d[1]] & dTiles[i]) == 0) {
+    //       newDTiles = newDTiles.filter((v) => v != dTiles[i]);
+    //       if (!isInStack(stack, d)) {
+    //         stack.push(d);
+    //       }
+    //     }
+    //   }
+    // });
   }
 };
 

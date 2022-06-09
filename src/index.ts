@@ -1,4 +1,4 @@
 const arr = getBoard();
-console.log(arr);
 iterate(arr);
-console.log(arr);
+const ctx = getCtx();
+drawBoard(ctx, arr);

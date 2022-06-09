@@ -17,42 +17,46 @@ enum Tiles {
   Tile16 = 32768,
 }
 
-// Returns what tiles are ok to put in left, top, right and bottom
-const getMathcingTiles = (tile: Tiles) => {
-  switch (tile) {
-    case Tiles.Tile1:
-      return [65535, 65535, 65535, 65535];
-    case Tiles.Tile2:
-      return [6091, 4097, 7089, 4097];
-    case Tiles.Tile3:
-      return [4097, 7581, 4097, 7909];
-    case Tiles.Tile4:
-      return [4097, 4097, 7091, 7909];
-    case Tiles.Tile5:
-      return [6059, 4097, 4097, 7909];
-    case Tiles.Tile6:
-      return [6059, 7581, 4097, 4097];
-    case Tiles.Tile7:
-      return [4097, 7581, 7091, 4097];
-    case Tiles.Tile8:
-      return [6059, 7581, 7091, 7909];
-    case Tiles.Tile9:
-      return [6059, 4097, 7091, 7909];
-    case Tiles.Tile10:
-      return [6059, 7581, 7091, 4097];
-    case Tiles.Tile11:
-      return [4097, 7581, 7091, 7909];
-    case Tiles.Tile12:
-      return [6059, 7581, 4097, 7909];
-    case Tiles.Tile13:
-      return [65535, 65535, 65535, 65535];
-    case Tiles.Tile14:
-      return [61441, 61441, 61441, 61441];
-    case Tiles.Tile15:
-      return [61441, 61441, 61441, 61441];
-    case Tiles.Tile16:
-      return [61441, 61441, 61441, 61441];
-    default:
-      throw Error("Invalid tile: " + tile);
+const combineArrs = (arr1: number[], arr2: number[]) => {
+  for (let i = 0; i < arr1.length; i++) {
+    arr1[i] = arr1[i] | arr2[i];
   }
+};
+
+// Returns what tiles are ok to put in left, top, right and bottom
+const getMathcingTiles = (tileValue: number) => {
+  const arr = [0, 0, 0, 0];
+  if (tileValue & Tiles.Tile1.valueOf())
+    combineArrs(arr, [65535, 65535, 65535, 65535]);
+  if (tileValue & Tiles.Tile2.valueOf())
+    combineArrs(arr, [6091, 4097, 7089, 4097]);
+  if (tileValue & Tiles.Tile3.valueOf())
+    combineArrs(arr, [4097, 7581, 4097, 7909]);
+  if (tileValue & Tiles.Tile4.valueOf())
+    combineArrs(arr, [4097, 4097, 7091, 7909]);
+  if (tileValue & Tiles.Tile5.valueOf())
+    combineArrs(arr, [6059, 4097, 4097, 7909]);
+  if (tileValue & Tiles.Tile6.valueOf())
+    combineArrs(arr, [6059, 7581, 4097, 4097]);
+  if (tileValue & Tiles.Tile7.valueOf())
+    combineArrs(arr, [4097, 7581, 7091, 4097]);
+  if (tileValue & Tiles.Tile8.valueOf())
+    combineArrs(arr, [6059, 7581, 7091, 7909]);
+  if (tileValue & Tiles.Tile9.valueOf())
+    combineArrs(arr, [6059, 4097, 7091, 7909]);
+  if (tileValue & Tiles.Tile10.valueOf())
+    combineArrs(arr, [6059, 7581, 7091, 4097]);
+  if (tileValue & Tiles.Tile11.valueOf())
+    combineArrs(arr, [4097, 7581, 7091, 7909]);
+  if (tileValue & Tiles.Tile12.valueOf())
+    combineArrs(arr, [6059, 7581, 4097, 7909]);
+  if (tileValue & Tiles.Tile13.valueOf())
+    combineArrs(arr, [65535, 65535, 65535, 65535]);
+  if (tileValue & Tiles.Tile14.valueOf())
+    combineArrs(arr, [61441, 61441, 61441, 61441]);
+  if (tileValue & Tiles.Tile15.valueOf())
+    combineArrs(arr, [61441, 61441, 61441, 61441]);
+  if (tileValue & Tiles.Tile16.valueOf())
+    combineArrs(arr, [61441, 61441, 61441, 61441]);
+  return arr;
 };
