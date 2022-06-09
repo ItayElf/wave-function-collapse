@@ -1,4 +1,4 @@
-const GRID_SIZE = 32;
+const GRID_SIZE = 4;
 
 const getBoard = () => {
   const arr = [];

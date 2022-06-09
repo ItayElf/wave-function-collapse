@@ -41,15 +41,15 @@ const getMathcingTiles = (tileValue: number) => {
   if (tileValue & Tiles.Tile7.valueOf())
     combineArrs(arr, [4097, 7581, 7091, 4097]);
   if (tileValue & Tiles.Tile8.valueOf())
-    combineArrs(arr, [6059, 7581, 7091, 7909]);
+    combineArrs(arr, [1994, 3484, 2994, 3812]);
   if (tileValue & Tiles.Tile9.valueOf())
-    combineArrs(arr, [6059, 4097, 7091, 7909]);
+    combineArrs(arr, [1994, 4097, 2994, 3812]);
   if (tileValue & Tiles.Tile10.valueOf())
-    combineArrs(arr, [6059, 7581, 7091, 4097]);
+    combineArrs(arr, [1994, 3484, 2994, 4097]);
   if (tileValue & Tiles.Tile11.valueOf())
-    combineArrs(arr, [4097, 7581, 7091, 7909]);
+    combineArrs(arr, [4097, 3484, 2994, 3812]);
   if (tileValue & Tiles.Tile12.valueOf())
-    combineArrs(arr, [6059, 7581, 4097, 7909]);
+    combineArrs(arr, [1994, 3484, 4097, 3812]);
   if (tileValue & Tiles.Tile13.valueOf())
     combineArrs(arr, [65535, 65535, 65535, 65535]);
   if (tileValue & Tiles.Tile14.valueOf())

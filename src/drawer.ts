@@ -1,7 +1,7 @@
-const TILE_SIZE = 32;
+const TILE_SIZE = (32 * 32) / GRID_SIZE;
 
 const getTileImageName = (value: number) =>
-  `./assets/tiles/tile${Math.log2(value) + 1}.png`;
+  `./assets/tiles/tile${Math.log2(value) + 1}.svg`;
 
 const getCtx = () => {
   const canvas = document.querySelector("canvas#canvas") as HTMLCanvasElement;
@@ -11,6 +11,8 @@ const getCtx = () => {
   }
   canvas.width = GRID_SIZE * TILE_SIZE;
   canvas.height = GRID_SIZE * TILE_SIZE;
+  canvas.style.width = `${GRID_SIZE * TILE_SIZE}px`;
+  canvas.style.height = `${GRID_SIZE * TILE_SIZE}px`;
   const pixelRatio = window.devicePixelRatio;
   ctx.scale(pixelRatio, pixelRatio);
   return ctx;
